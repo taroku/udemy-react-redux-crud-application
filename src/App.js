@@ -1,34 +1,32 @@
-import React from 'react';
-import PTypes from 'prop-types';
+import React,{Component} from 'react';
 
-const App = () =>{
-  const profiles = [
-    { name:"Taro",age:10},
-    { name:"Hanako",age:5},
-    { name:"Rin"}
-  ]
-  return (
-  <React.Fragment>
-    {
-      profiles.map((profile,index)=>{
-        return <User name={profile.name} age={profile.age} key={index}/>
-      })
-    }
-    {/* <User name = {"Taro"} age={10}/>
-    <User name = {"Hanako"} age={5}/> */}
-  </React.Fragment>
-  )
-}
-const User = (props)=>{
-  return <h1>Hi!I am {props.name},and {props.age}years old!</h1>
-}
-User.defaultProps = {
-  age:5
+const App = () =>  (<Counter> </Counter>)
+
+class Counter extends Component {
+  constructor(props){
+    super(props)
+    this.state = {count:0}
+  }
+  handlePlusButton = () => {
+    console.log("handlePlusButton")
+    // this.state.count +=1
+    this.setState({count: this.state.count +1 })
+    console.log(this.state.count)
+  }
+  handleMinusButton = () =>{
+    this.setState({count:this.state.count -1})
+  }
+  render(){
+    return(
+    <React.Fragment>
+    <div>count:{this.state.count}</div>
+    <button onClick={this.handlePlusButton}>+1</button>
+    <button onClick={this.handleMinusButton}>-1</button>
+    </React.Fragment>
+    )
+  }
 }
 
-User.propTypes = {
-  name: PTypes.string,
-  age:PTypes.number.isRequired
-}
+
 
 export default App;
